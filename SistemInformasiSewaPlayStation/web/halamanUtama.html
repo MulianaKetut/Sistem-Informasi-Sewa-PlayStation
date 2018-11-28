@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Penyewaan Bapak Ferguso</title>
+        <title>Penyewaan Playstation ABC</title>
         <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
         <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
         <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="banner-text text-center">
-                        <h1>Penyewaan PS Bapak Ferguso</h1>
+                        <h1>Penyewaan Playstation ABC</h1>
                         <!--   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna vel scelerisque nisl consectetur et.</p>
    
                        </div><!-- banner text -->
@@ -53,44 +53,45 @@
         <section id="features" class="features section">
             <div class="container">
                 <div class="row">
-                    <!DOCTYPE html>
-                    <html>
-                        <head>
-                            <style>
-                                table {
-                                    font-family: arial, sans-serif;
-                                    border-collapse: collapse;
-                                    width: 100%;
-                                }
-
-                                td, th {
-                                    border: 1px solid #dddddd;
-                                    text-align: left;
-                                    padding: 8px;
-                                }
-
-                                tr:nth-child(even) {
-                                    background-color: #dddddd;
-                                }
-                            </style>
-                        </head>
-                        <body>
-
-                            <h2>Tabel Sewa</h2>
-
-                            <table>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Tanggal Sewa</th>
-                                    <th>Tanggal Pengembalian</th>
-                                    <th>Status Sewa</th>
-                                </tr>
-                            </table>
-                            <button type="tambahbutton" class="btn" a href =halamanPenyewaan.html> Tambah Sewa</button>
-                        </body>
-                    </html>
-
+                    <label for="search"><b>Cari :</b></label>
+                    <br>
+                    <input type="text" placeholder="Masukkan NIK" name="nama" required>
+                    <br>
+                    <br>
+                    <button type="search" class="btn">Cari Costumer</button>
+                    <br>
+                    <br>
+                    <label for="nama"><b>Nama Lengkap :</b></label>
+                    <br>
+                    <input disabled="" type="text" placeholder="Masukkan Nama" name="nama" required>
+                    <br>
+                    <label for="nik"><b>NIK :</b></label>
+                    <br>
+                    <input disabled="" type="text" placeholder="Masukkan NIK" name="nik" required>
+                    <br>
+                    <label for="alamat"><b>Alamat :</b></label>
+                    <br>
+                    <input disabled="" type="text" placeholder="Masukkan Alamat" name="alamat" required>
+                    <br>
+                    <label for="nomorHp"><b>No. Handphone :</b></label>
+                    <br>
+                    <input disabled="" type="text" placeholder="Masukkan No.Hp" name="nomorHp" required>
+                    <br>
+                    <label for="tglSewa"><b>Tanggal Sewa :</b></label>
+                    <br>
+                    <input disabled="" type="date"  name="tglSewa" required>
+                    <br>
+                    <label for="tglKembali"><b>Tanggal Pengembalian :</b></label>
+                    <br>
+                    <input disabled="" type="date"  name="tglKembali" required>
+                    <br>
+                    <label for="idPlaystation"><b>ID Playstation : </b></label>
+                    <br>
+                    <input disabled="" type="text" placeholder="Masukkan ID Playstation" name="idPlaystation" required>
+                    <br>
+                    <br>
+                    <button type="tambahbutton" onclick="sewa()"  class="btn" > Tambah Sewa</button>
+                    <button type="ubahstatus" class="btn"> Bayar </button>
                 </div>
         </section>
         <section id="teams" class="section teams">
@@ -185,7 +186,7 @@
             <div class="footer-bottom">
                 <div class="container">
                     <div class="col-md-12">
-                        <p>Copyright © 2018 PsFerguso. All Rights Reserved<br>Made with <i class="fa fa-heart pulse"></i> by <a href="https://www.instagram.com/bramchandra14/">Daniel Bram</a></p>
+                        <p>Copyright © 2018 PsABC.com. All Rights Reserved<br>Made with <i class="fa fa-heart pulse"></i> by <a href="https://www.instagram.com/bramchandra14/">Daniel Bram</a></p>
                     </div>
                 </div>
             </div>
@@ -202,6 +203,11 @@
         <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+                        function sewa() {
+                            window.open("halamanPenyewaan.html", "_self");
+                        }
+        </script>
         <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
