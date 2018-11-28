@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 28, 2018 2:33:35 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 29, 2018 12:39:17 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.Penyewaan" table="penyewaan" catalog="db165314065" optimistic-lock="version">
         <id name="nik" type="int">
@@ -22,9 +22,6 @@
         </property>
         <property name="tglKembali" type="date">
             <column name="tglKembali" length="10" not-null="true" />
-        </property>
-        <property name="harga" type="int">
-            <column name="harga" not-null="true" />
         </property>
         <property name="idPlayStation" type="string">
             <column name="idPlayStation" length="20" not-null="true" />

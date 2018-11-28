@@ -71,8 +71,7 @@ public class PenyewaanResource {
                 penyewaan.getNomorHp(),
                 penyewaan.getAlamat(),
                 penyewaan.getTglSewa(), 
-                penyewaan.getTglKembali(), 
-                penyewaan.getHarga(), 
+                penyewaan.getTglKembali(),                
                 penyewaan.getIdPlayStation());
         return Response
                 .status(200)

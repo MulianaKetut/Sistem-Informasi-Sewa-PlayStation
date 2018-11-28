@@ -30,10 +30,10 @@ public class PenyewaanHelper {
         session.close();
         return result;
     }
-     public void addNewPenyewaan(int nik, String nama, int nomorHp, String alamat, Date tglSewa, Date tglKembali, int harga, String idPlayStation){
+     public void addNewPenyewaan(int nik, String nama, int nomorHp, String alamat, Date tglSewa, Date tglKembali,  String idPlayStation){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                        
-        Penyewaan sewa = new Penyewaan(nik, nama, nomorHp, alamat, tglSewa, tglKembali, harga, idPlayStation);
+        Penyewaan sewa = new Penyewaan(nik, nama, nomorHp, alamat, tglSewa, tglKembali, idPlayStation);
         session.save(sewa);
         transaction.commit();
         session.close();
