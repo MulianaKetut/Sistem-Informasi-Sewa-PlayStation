@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 1, 2018 12:09:47 PM by Hibernate Tools 4.3.1
+// Generated Nov 28, 2018 2:33:35 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,19 +11,17 @@ public class Playstation  implements java.io.Serializable {
 
      private String idPlayStation;
      private String namaPlayStation;
-     private Integer hargaSewaPlayStation;
+     private int hargaSewaPlayStation;
+     private String status;
 
     public Playstation() {
     }
 
-	
-    public Playstation(String idPlayStation) {
-        this.idPlayStation = idPlayStation;
-    }
-    public Playstation(String idPlayStation, String namaPlayStation, Integer hargaSewaPlayStation) {
+    public Playstation(String idPlayStation, String namaPlayStation, int hargaSewaPlayStation, String status) {
        this.idPlayStation = idPlayStation;
        this.namaPlayStation = namaPlayStation;
        this.hargaSewaPlayStation = hargaSewaPlayStation;
+       this.status = status;
     }
    
     public String getIdPlayStation() {
@@ -40,12 +38,19 @@ public class Playstation  implements java.io.Serializable {
     public void setNamaPlayStation(String namaPlayStation) {
         this.namaPlayStation = namaPlayStation;
     }
-    public Integer getHargaSewaPlayStation() {
+    public int getHargaSewaPlayStation() {
         return this.hargaSewaPlayStation;
     }
     
-    public void setHargaSewaPlayStation(Integer hargaSewaPlayStation) {
+    public void setHargaSewaPlayStation(int hargaSewaPlayStation) {
         this.hargaSewaPlayStation = hargaSewaPlayStation;
+    }
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 

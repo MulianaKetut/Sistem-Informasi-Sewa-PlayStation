@@ -67,8 +67,9 @@ public class PlayStationResource {
         Playstation ps = gson.fromJson(data, Playstation.class);            
         PlaystationHelper helper = new PlaystationHelper();
         helper.addNewPlaystation(ps.getIdPlayStation(),
-                ps.getNamaPlayStation(),
-                ps.getHargaSewaPlayStation());
+                ps.getNamaPlayStation(), 
+                ps.getHargaSewaPlayStation(), 
+                ps.getStatus());
         return Response
                 .status(200)
                 .entity(ps)

@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 1, 2018 12:09:47 PM by Hibernate Tools 4.3.1
+// Generated Nov 28, 2018 2:33:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,25 +12,25 @@ public class Penyewaan  implements java.io.Serializable {
 
      private int nik;
      private String nama;
-     private Integer nomorHp;
+     private int nomorHp;
      private String alamat;
      private Date tglSewa;
      private Date tglKembali;
+     private int harga;
+     private String idPlayStation;
 
     public Penyewaan() {
     }
 
-	
-    public Penyewaan(int nik) {
-        this.nik = nik;
-    }
-    public Penyewaan(int nik, String nama, Integer nomorHp, String alamat, Date tglSewa, Date tglKembali) {
+    public Penyewaan(int nik, String nama, int nomorHp, String alamat, Date tglSewa, Date tglKembali, int harga, String idPlayStation) {
        this.nik = nik;
        this.nama = nama;
        this.nomorHp = nomorHp;
        this.alamat = alamat;
        this.tglSewa = tglSewa;
        this.tglKembali = tglKembali;
+       this.harga = harga;
+       this.idPlayStation = idPlayStation;
     }
    
     public int getNik() {
@@ -47,11 +47,11 @@ public class Penyewaan  implements java.io.Serializable {
     public void setNama(String nama) {
         this.nama = nama;
     }
-    public Integer getNomorHp() {
+    public int getNomorHp() {
         return this.nomorHp;
     }
     
-    public void setNomorHp(Integer nomorHp) {
+    public void setNomorHp(int nomorHp) {
         this.nomorHp = nomorHp;
     }
     public String getAlamat() {
@@ -74,6 +74,20 @@ public class Penyewaan  implements java.io.Serializable {
     
     public void setTglKembali(Date tglKembali) {
         this.tglKembali = tglKembali;
+    }
+    public int getHarga() {
+        return this.harga;
+    }
+    
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+    public String getIdPlayStation() {
+        return this.idPlayStation;
+    }
+    
+    public void setIdPlayStation(String idPlayStation) {
+        this.idPlayStation = idPlayStation;
     }
 
 

@@ -11,7 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Penyewaan;
-import pojos.Playstation;
 import util.PsHibernateUtil;
 
 /**
@@ -31,10 +30,10 @@ public class PenyewaanHelper {
         session.close();
         return result;
     }
-     public void addNewPenyewaan(int nik, String nama, int noHP, String alamat, Date tglSewa, Date tglKembali){
+     public void addNewPenyewaan(int nik, String nama, int nomorHp, String alamat, Date tglSewa, Date tglKembali, int harga, String idPlayStation){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                        
-        Penyewaan sewa = new Penyewaan(nik, nama, noHP, alamat, tglSewa, tglKembali);
+        Penyewaan sewa = new Penyewaan(nik, nama, nomorHp, alamat, tglSewa, tglKembali, harga, idPlayStation);
         session.save(sewa);
         transaction.commit();
         session.close();

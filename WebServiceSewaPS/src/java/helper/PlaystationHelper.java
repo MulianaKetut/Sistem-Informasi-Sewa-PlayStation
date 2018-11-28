@@ -29,10 +29,10 @@ public class PlaystationHelper {
         session.close();
         return result;
     }
-     public void addNewPlaystation(String idPlaystation, String namaPlaystation, int harga){
+     public void addNewPlaystation(String idPlayStation, String namaPlayStation, int hargaSewaPlayStation, String status){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                
-        Playstation ps = new Playstation(idPlaystation, namaPlaystation, harga);
+        Playstation ps = new Playstation(idPlayStation, namaPlayStation, hargaSewaPlayStation, status);
         session.save(ps);
         transaction.commit();
         session.close();

@@ -67,11 +67,13 @@ public class PenyewaanResource {
         Penyewaan penyewaan = gson.fromJson(data, Penyewaan.class);            
         PenyewaanHelper helper = new PenyewaanHelper();
         helper.addNewPenyewaan(penyewaan.getNik(),
-                penyewaan.getAlamat(),
+                penyewaan.getNama(),
                 penyewaan.getNomorHp(),
                 penyewaan.getAlamat(),
-                penyewaan.getTglSewa(),
-                penyewaan.getTglKembali());
+                penyewaan.getTglSewa(), 
+                penyewaan.getTglKembali(), 
+                penyewaan.getHarga(), 
+                penyewaan.getIdPlayStation());
         return Response
                 .status(200)
                 .entity(penyewaan)
