@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="row">
                     <p><input type="text" placeholder="Cari NIK" id="nikInput" required></p>
-                    
+
                     <p><button onclick="loadDoc()" type="button" id="tombol">Cari Costumer</button></p>
                     <form>
                         <div>
@@ -85,7 +85,6 @@
                         <button type="ubahstatus" class="btn"> Bayar </button>
                     </form>
 
-
                 </div>
         </section>
 
@@ -96,19 +95,20 @@
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var myObj = JSON.parse(this.responseText);
-                        document.getElementById("nik").value = myObj.nik;
-                        document.getElementById("nama").value = myObj.nama;
-                        document.getElementById("nomorHp").value = myObj.nomorHp;
-                        document.getElementById("alamat").value = myObj.alamat;
-                        document.getElementById("tglSewa").value = myObj.tglSewa;
-                        document.getElementById("tglKembali").value = myObj.tglKembali;
-                        document.getElementById("idPlayStation").value = myObj.idPlayStation;
-
+                        for (var i = 0; i < myObj.length; i++) {
+                            document.getElementById("nik").value = myObj[i].nik;
+                            document.getElementById("nama").value = myObj[i].nama;
+                            document.getElementById("nomorHp").value = myObj[i].nomorHp;
+                            document.getElementById("alamat").value = myObj[i].alamat;
+                            document.getElementById("tglSewa").value = myObj[i].tglSewa;
+                            document.getElementById("tglKembali").value = myObj[i].tglKembali;
+                            document.getElementById("idPlayStation").value = myObj[i].idPlayStation;
+                        }
                     }
                 }
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
-                
+
             }
         </script>
 
@@ -196,7 +196,7 @@
                         </div>
                         <div class="footer-col col-md-4">
                             <h5>About Penyewaan PS ABC</h5>
-                                <p>Kontak WA : 08882118318</p>
+                            <p>Kontak WA : 08882118318</p>
                         </div>
                     </div>
                 </div>

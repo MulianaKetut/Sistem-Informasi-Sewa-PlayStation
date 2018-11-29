@@ -109,11 +109,41 @@
                         <div>
                             <input  type="text" placeholder="Masukkan ID Playstation" id="idPlayStation" required>
                         </div>
-                        <button type="sewa" class="btn" >Sewa</button>
+                        <button onclick="make_json(this)" type="sewa" class="btn" >Sewa</button>
                     </div> 
                 </div>
             </div>
-           
+            
+            <script>
+                function make_json(form) {
+                    var json = {
+                        "nama": form.nama.value,
+                        "nik": form.nik.value,
+                        "alamat": form.alamat.value,
+                        "nomorHp": form.nomorHp.value,
+                        "tglSewa": form.tglSewa.value,
+                        "tglKembali": form.tglKembali.value,
+                        "idPlayStation": form.idPlayStation.value
+
+                    };
+                    var html = JSON.stringify(json, 0, 100);
+                    var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan";
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            alert("Data Berhasil Disimpan");
+                        }
+                    }
+                    xhr.open('POST', Url, false);
+                    xhr.setRequestHeader("Content-type", "application/json");
+                    xhr.send(html);
+                    document.getElementById("output").innerHTML = html;
+                    return false;
+
+                }
+
+            </script>
+
 
             <footer class="footer">
                 <div class="footer-top">
@@ -134,7 +164,7 @@
                             </div>
                             <div class="footer-col col-md-4">
                                 <h5>About Penyewaan PS ABC</h5>
-                                    <p>Kontak WA : 08882118318</p>
+                                <p>Kontak WA : 08882118318</p>
                             </div>
                         </div>
                     </div>
