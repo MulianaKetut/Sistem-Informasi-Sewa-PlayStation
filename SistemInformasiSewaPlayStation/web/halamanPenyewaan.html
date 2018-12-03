@@ -28,7 +28,7 @@
                     <nav class="navigation" role="navigation">
                         <ul class="primary-nav">
                             <!--   <li><a href="#features">Features</a></li>-->
-                            <li><a href=halamanUtama.html>Home</a></li>
+                            <li><a href=index.html>Home</a></li>
                             <li><a href=halamanPenyewaan.html>Sewa Baru</a></li>
                             <li><a href=halamanLaporan.html>Laporan</a></li>
                             <!--  <li><a href="#teams">Our Team</a></li>-->
@@ -51,69 +51,29 @@
         </section><!-- banner -->
 
         <section id="form" class="form section">
-            <div class="container">
-                <div class="row">
-                    <div class="form-group">
-                        <div>
-                            <label for="nama"><b>Nama Lengkap :</b></label>
-                        </div>
+            <form onsubmit="return make_json(this);" style="border:1px solid #ccc" method="POST">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <table>
+                                <tr><td>Nik</td> <td>:</td> <td><input type="text" id="nik" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Nama</td> <td>:</td> <td><input type="text" id="nama" value="" style="border-radius: 10px; background-color: #eee"></td>
+                                <tr><td>Nomer Hp</td> <td>:</td> <td><input type="text" id="nomorHp" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            </table>
 
-                        <div>
-                            <input  type="text" placeholder="Masukkan Nama " id="nama" required>
-                        </div>
+                            <input type="submit" value="Tambah">
+                            <pre id="berhasil">
+                            </pre>
 
-                        <div>
-                            <label for="nama"><b>NIK :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="text" placeholder="Masukkan NIK" id="nik" required>
-                        </div>
-
-                        <div>
-                            <label for="nama"><b>Alamat :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="text" placeholder="Masukkan Alamat" id="alamat" required>
-                        </div>
-
-                        <div>
-                            <label for="nama"><b>No.Handphone :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="text" placeholder="Masukkan No.Handphone" id="nomorHp" required>
-                        </div>
-
-                        <div>
-                            <label for="nama"><b>Tanggal sewa :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="date"  id="tglSewa" required>
-                        </div>
-
-                        <div>
-                            <label for="nama"><b>TanggalPengembalian :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="date"  id="tglKembali" required>
-                        </div>
-
-                        <div>
-                            <label for="nama"><b>ID Playstation :</b></label>
-                        </div>
-
-                        <div>
-                            <input  type="text" placeholder="Masukkan ID Playstation" id="idPlayStation" required>
-                        </div>
-                        <button onclick="make_json(this)" type="sewa" class="btn" >Sewa</button>
-                    </div> 
+                        </div> 
+                    </div>
                 </div>
-            </div>
-            
+            </form>
+        </section>
             <script>
                 function make_json(form) {
                     var json = {
@@ -127,17 +87,12 @@
 
                     };
                     var html = JSON.stringify(json, 0, 100);
-                    var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan";
+                    var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/addPenyewaan";
                     var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            alert("Data Berhasil Disimpan");
-                        }
-                    }
                     xhr.open('POST', Url, false);
                     xhr.setRequestHeader("Content-type", "application/json");
                     xhr.send(html);
-                    document.getElementById("output").innerHTML = html;
+                    document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
                     return false;
 
                 }
