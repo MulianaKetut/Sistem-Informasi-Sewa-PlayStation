@@ -63,7 +63,6 @@
                             <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                         </table>
 
-                        <input type="submit" value="Tambah Sewa">
                         <input type="submit" value="Bayar">
 
                         <pre id="berhasil">
@@ -77,6 +76,7 @@
         <script>
             function loadDoc() {
                 var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan?nik=" + nikInput.value;
+
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -88,7 +88,6 @@
                         document.getElementById("tglSewa").value = myObj[0].tglSewa;
                         document.getElementById("tglKembali").value = myObj[0].tglKembali;
                         document.getElementById("idPlayStation").value = myObj[0].idPlayStation;
-
                     }
                 }
                 xmlhttp.open("GET", url, true);
@@ -98,13 +97,13 @@
 
             function make_json(form) {
                 var json = {
-                    "nik": form.nik.value,
                     "nama": form.nama.value,
-                    "nomorHp": form.nomorHp.value,
+                    "nik": form.nik.value,
                     "alamat": form.alamat.value,
+                    "nomorHp": form.nomorHp.value,
                     "tglSewa": form.tglSewa.value,
                     "tglKembali": form.tglKembali.value,
-                    "idPlaystation": form.idPlayStation.value
+                    "idPlayStation": form.idPlayStation.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
 

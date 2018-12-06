@@ -62,7 +62,9 @@
                                 <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Id Playstation</td> <td>:</td><td><input type="" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Harga</td> <td>:</td><td><input type="text" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Status Sewa</td> <td>:</td> <td><input type="text" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             </table>
 
                             <input type="submit" value="Tambah">
@@ -74,91 +76,92 @@
                 </div>
             </form>
         </section>
-            <script>
-                function make_json(form) {
-                    var json = {
-                        "nama": form.nama.value,
-                        "nik": form.nik.value,
-                        "alamat": form.alamat.value,
-                        "nomorHp": form.nomorHp.value,
-                        "tglSewa": form.tglSewa.value,
-                        "tglKembali": form.tglKembali.value,
-                        "idPlayStation": form.idPlayStation.value
+        <script>
+            function make_json(form) {
+                var json = {
+                    "nama": form.nama.value,
+                    "nik": form.nik.value,
+                    "alamat": form.alamat.value,
+                    "nomorHp": form.nomorHp.value,
+                    "tglSewa": form.tglSewa.value,
+                    "tglKembali": form.tglKembali.value,
+                    "idPlayStation": form.idPlayStation.value,
+                    "status": form.status.value
 
-                    };
-                    var html = JSON.stringify(json, 0, 100);
-                    var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/addPenyewaan";
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', Url, false);
-                    xhr.setRequestHeader("Content-type", "application/json");
-                    xhr.send(html);
-                    document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
-                    return false;
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/addPenyewaan";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
+                return false;
 
-                }
+            }
 
-            </script>
+        </script>
 
 
-            <footer class="footer">
-                <div class="footer-top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="footer-col col-md-4">
-                                <h5>Location</h5>
-                                <p>Jalan suka-suka no 1998<br>Paingan, Paingan City 10080</p>
-                            </div>
-                            <div class="footer-col col-md-4">
-                                <h5>Money is the Key</h5>
-                                <ul class="footer-share">
-
-                                    <li><a href="https://www.facebook.com/llDrAgOnZagll?ref=br_rs"><i class="fa fa-facebookr"></i></a></li>
-                                    <li><a href="https://www.facebook.com/muliana.ketut.3?lst=100000344193655%3A100009169137051%3A1542260582"><i class="fa fa-facebook"></i></a></li>
-
-                                </ul>
-                            </div>
-                            <div class="footer-col col-md-4">
-                                <h5>About Penyewaan PS ABC</h5>
-                                <p>Kontak WA : 08882118318</p>
-                            </div>
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4">
+                            <h5>Location</h5>
+                            <p>Jalan suka-suka no 1998<br>Paingan, Paingan City 10080</p>
                         </div>
-                    </div>
-                </div><!-- footer top -->
-                <div class="footer-bottom">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <p>Copyright © 2018 SimpleS!te.com | All Rights Reserved<br>Made with <i class="fa fa-heart pulse"></i> by <a href="https://www.instagram.com/bramchandra14/">Daniel Bram</a></p>
+                        <div class="footer-col col-md-4">
+                            <h5>Money is the Key</h5>
+                            <ul class="footer-share">
+
+                                <li><a href="https://www.facebook.com/llDrAgOnZagll?ref=br_rs"><i class="fa fa-facebookr"></i></a></li>
+                                <li><a href="https://www.facebook.com/muliana.ketut.3?lst=100000344193655%3A100009169137051%3A1542260582"><i class="fa fa-facebook"></i></a></li>
+
+                            </ul>
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h5>About Penyewaan PS ABC</h5>
+                            <p>Kontak WA : 08882118318</p>
                         </div>
                     </div>
                 </div>
-            </footer><!-- footer -->
+            </div><!-- footer top -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="col-md-12">
+                        <p>Copyright © 2018 SimpleS!te.com | All Rights Reserved<br>Made with <i class="fa fa-heart pulse"></i> by <a href="https://www.instagram.com/bramchandra14/">Daniel Bram</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- footer -->
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery.flexslider-min.js"></script>
-            <script src="js/jquery.fancybox.pack.js"></script>
-            <script src="js/jquery.waypoints.min.js"></script>
-            <script src="js/retina.min.js"></script>
-            <script src="js/modernizr.js"></script>
-            <script src="js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.flexslider-min.js"></script>
+        <script src="js/jquery.fancybox.pack.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/retina.min.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/main.js"></script>
 
-            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-            <script>
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-                ga('create', 'UA-XXXX-X');
-                ga('send', 'pageview');
-            </script>
+            ga('create', 'UA-XXXX-X');
+            ga('send', 'pageview');
+        </script>
     </body>
 </html>
