@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
     <body>
-         <section class="banner" role="banner">
+    <section class="banner" role="banner">
             <header id="header">
                 <div class="header-content clearfix">
                     <nav class="navigation" role="navigation">
@@ -52,13 +52,11 @@
                     <div class="row">
                         <div class="form-group">
                             <table>
-                                <tr><td>Nik</td> <td>:</td> <td><input type="text" id="nik" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Nama</td> <td>:</td> <td><input type="text" id="nama" value="" style="border-radius: 10px; background-color: #eee"></td>
-                                <tr><td>Nomer Hp</td> <td>:</td> <td><input type="text" id="nomorHp" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Id Playstation</td> <td>:</td><td><input type="" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Nama Playstation</td> <td>:</td><td><input type="" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Harga Playstation</td> <td>:</td><td><input type="" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Status</td> <td>:</td><td><input type="" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            
                             </table>
 
                             <input type="submit" value="Tambah">
@@ -73,16 +71,14 @@
         <script>
             function make_json(form) {
                 var json = {
-                    "nama": form.nama.value,
-                    "nik": form.nik.value,
-                    "alamat": form.alamat.value,
-                    "nomorHp": form.nomorHp.value,
-                    "tglSewa": form.tglSewa.value,
-                    "tglKembali": form.tglKembali.value
+                   "idPlayStation": form.idPlayStation.value,
+                   "namaPlaystation" : form.namaPlaystation.value,
+                   "hargaSewaPlaystation" : form.hargaSewaPlaystation.value,
+                    "status": form.status.value
 
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/addPenyewaan";
+                var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/addPlaystation";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
