@@ -29,7 +29,8 @@
                         <ul class="primary-nav">
                             <li><a href=index.html>Home</a></li>
                             <li><a href=halamanPenyewaan.html>Sewa Baru</a></li>
-                            <li><a href=halamanLaporan.html>Laporan</a></li>
+                            <li><a href="halamanTambahPs.html">Tambah PS Baru</a></li>
+                            <li><a href=halamanLaporan.html>Laporan Penyewaan</a></li>  
                         </ul>
                     </nav>
                     <a href="#" class="nav-toggle">Menu<span></span></a>
@@ -90,7 +91,7 @@
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
-                
+
 
                 var json1 = {
                     "idPlayStation": form.idPlayStation.value,
@@ -98,17 +99,17 @@
                     "hargaSewaPlayStation": form.hargaSewaPlayStation.value,
                     "status": "Dipinjam"
                 };
-                
+
                 var html = JSON.stringify(json1, 0, 100);
                 var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus"
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html)
-                
+
                 document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
                 return false;
-                
+
             }
 
             function myFunction1() {
@@ -146,11 +147,11 @@
                 };
 
                 request.send();
-                
+
             }
-            
+
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/searchIdPs?idPlayStation=" +idPlayStation.value;
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/searchIdPs?idPlayStation=" + idPlayStation.value;
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
@@ -165,7 +166,7 @@
                 xmlhttp.send();
 
             }
-            
+
 
         </script>
 
