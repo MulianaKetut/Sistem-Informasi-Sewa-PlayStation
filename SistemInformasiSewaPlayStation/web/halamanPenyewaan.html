@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
     <body>
-         <section class="banner" role="banner">
+        <section class="banner" role="banner">
             <header id="header">
                 <div class="header-content clearfix">
                     <nav class="navigation" role="navigation">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
         </section><!-- banner -->
-        
+
         <section id="form" class="form section">
             <form onsubmit="return make_json(this);" style="border:1px solid #ccc" method="POST">
                 <div class="container">
@@ -58,7 +58,7 @@
                                 <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Id Playstation</td> <td>:</td><td><input type="" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Id Playstation</td> <td>:</td><td><select type="" id="idPlayStation" value="" onchange="myFunction1()" style="border-radius: 10px; background-color: #eee"></select></td></tr>
                             </table>
 
                             <input type="submit" value="Tambah">
@@ -90,6 +90,61 @@
                 document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
                 return false;
 
+            }
+
+            function myFunction1() {
+                let dropdown = document.getElementById('idPlayStation');
+                dropdown.length = 0;
+
+                let defaultOption = document.createElement('option');
+                defaultOption.text = 'Pilih Id PS';
+
+                dropdown.add(defaultOption);
+                dropdown.selectedIndex = 0;
+
+                const url = 'http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation';
+
+                const request = new XMLHttpRequest();
+                request.open('GET', url, true);
+
+                request.onload = function () {
+                    if (request.status === 200) {
+                        const data = JSON.parse(request.responseText);
+                        let option;
+                        for (let i = 0; i < data.length; i++) {
+                            option = document.createElement('option');
+                            option.text = data[i].name;
+                            option.value = data[i].abbreviation;
+                            dropdown.add(option);
+                        }
+                    } else {
+                        // Reached the server, but it returned an error
+                    }
+                }
+
+                request.onerror = function () {
+                    console.error('An error occurred fetching the JSON from ' + url);
+                };
+
+                request.send();
+                
+                var xmlhttp = new XMLHttpRequest();
+
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation";
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var html = JSON.parse(this.responseText);
+                        for (var i = 0; i < html.length; i++) {
+                            var select = document.getElementById("idPlayStation");
+                            var option = document.createElement("option");
+                            option.text = html[i].idPlayStation;
+                            select.add(option);
+                        }
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
             }
 
         </script>
