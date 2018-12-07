@@ -16,9 +16,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojos.Playstation;
+import util.PsHibernateUtil;
 
 /**
  * REST Web Service
@@ -39,9 +44,10 @@ public class PlayStationResource {
 
     /**
      * Retrieves representation of an instance of service.PlayStationResource
+     *
      * @return an instance of java.lang.String
      */
-    @GET   
+    @GET
     @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
     public Response getJson() {
         //TODO return proper representation object
@@ -55,18 +61,43 @@ public class PlayStationResource {
                 .build();
     }
 
+    @GET
+    @Path("searchIdPS")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String cariNik(@QueryParam("idPlayStation") String idPlayStation) {
+        return new Gson().toJson(new PlaystationHelper().searchIdPS(idPlayStation));
+    }
+
     /**
      * PUT method for updating or creating an instance of PlayStationResource
+     *
      * @param content representation for the resource
      */
-     @POST
+    @POST
     @Path("addPlaystation")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPasien(String data){
+    public Response addNewPasien(String data) {
         Gson gson = new Gson();
-        Playstation ps = gson.fromJson(data, Playstation.class);            
+        Playstation ps = gson.fromJson(data, Playstation.class);
         PlaystationHelper helper = new PlaystationHelper();
         helper.addNewPlaystation(ps.getIdPlayStation(),
+                ps.getNamaPlayStation(),
+                ps.getHargaSewaPlayStation(),
+                ps.getStatus());
+        return Response
+                .status(200)
+                .entity(ps)
+                .build();
+    }
+    
+    @POST
+    @Path("updateStatus")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateStatus(String data){
+        Gson gson = new Gson();
+        Playstation ps = gson.fromJson(data, Playstation.class);
+        PlaystationHelper psHelper = new PlaystationHelper();
+        psHelper.updateStatus(ps.getIdPlayStation(), 
                 ps.getNamaPlayStation(), 
                 ps.getHargaSewaPlayStation(), 
                 ps.getStatus());
@@ -75,4 +106,6 @@ public class PlayStationResource {
                 .entity(ps)
                 .build();
     }
+    
+
 }

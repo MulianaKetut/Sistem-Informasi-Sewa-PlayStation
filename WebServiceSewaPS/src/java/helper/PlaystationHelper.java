@@ -29,6 +29,41 @@ public class PlaystationHelper {
         session.close();
         return result;
     }
+    
+    public List<Playstation> searchIdPS(String idPlayStation){
+        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Playstation where idPlayStation=:idPlayStation";
+        Query q = session.createQuery(query);
+        q.setParameter("idPlayStation", idPlayStation);
+        List<Playstation> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
+    public void updateStatus(String idPlayStation,
+            String namaPlayStation,
+            int hargaSewaPlayStation,
+            String status){
+        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        List<Playstation> list = searchIdPS(idPlayStation);
+        Playstation ps = new Playstation();
+        ps.setIdPlayStation(list.get(0).getIdPlayStation());
+        ps.setNamaPlayStation(list.get(0).getNamaPlayStation());
+        ps.setHargaSewaPlayStation(list.get(0).getHargaSewaPlayStation());
+        ps.setStatus(status);
+        session.update(ps);
+        tx.commit();
+        session.close();
+        
+    }
+    
      public void addNewPlaystation(String idPlayStation, String namaPlayStation, int hargaSewaPlayStation, String status){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                

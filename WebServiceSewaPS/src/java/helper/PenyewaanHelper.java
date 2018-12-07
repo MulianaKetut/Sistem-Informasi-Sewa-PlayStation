@@ -30,6 +30,23 @@ public class PenyewaanHelper {
         session.close();
         return result;
     }
+    
+    public List<Penyewaan> searchNikPenyewa(int nik){
+        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Penyewaan where nik=:nik";
+        Query q = session.createQuery(query);
+        q.setParameter("nik", nik);
+        List<Penyewaan> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
      public void addNewPenyewaan(int nik, String nama, int nomorHp, String alamat, Date tglSewa, Date tglKembali,  String idPlayStation){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                        
