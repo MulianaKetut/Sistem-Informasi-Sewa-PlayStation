@@ -30,12 +30,12 @@ public class PlaystationHelper {
         return result;
     }
     
-    public List<Playstation> searchIdPS(String idPlayStation){
+    public List<Playstation> searchStatus(String status){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        String query = "from Playstation where idPlayStation=:idPlayStation";
+        String query = "from Playstation where status=:status";
         Query q = session.createQuery(query);
-        q.setParameter("idPlayStation", idPlayStation);
+        q.setParameter("status", status);
         List<Playstation> list = q.list();
         tx.commit();
         session.close();
@@ -52,7 +52,7 @@ public class PlaystationHelper {
             String status){
         Session session = PsHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        List<Playstation> list = searchIdPS(idPlayStation);
+        List<Playstation> list = searchStatus(status);
         Playstation ps = new Playstation();
         ps.setIdPlayStation(list.get(0).getIdPlayStation());
         ps.setNamaPlayStation(list.get(0).getNamaPlayStation());

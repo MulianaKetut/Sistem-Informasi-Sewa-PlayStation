@@ -62,10 +62,10 @@ public class PlayStationResource {
     }
 
     @GET
-    @Path("searchIdPS")
+    @Path("searchStatus")
     @Produces(MediaType.APPLICATION_JSON)
-    public String cariNik(@QueryParam("idPlayStation") String idPlayStation) {
-        return new Gson().toJson(new PlaystationHelper().searchIdPS(idPlayStation));
+    public String cariStatus(@QueryParam("status") String status) {
+        return new Gson().toJson(new PlaystationHelper().searchStatus(status));
     }
 
     /**
