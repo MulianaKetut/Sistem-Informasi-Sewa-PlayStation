@@ -46,6 +46,22 @@ public class PlaystationHelper {
         }
     }
     
+    public List<Playstation> searchIdPs(String idPs){
+        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Playstation where idPlayStation=:idPlayStation";
+        Query q = session.createQuery(query);
+        q.setParameter("idPlayStation", idPs);
+        List<Playstation> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
     public void updateStatus(String idPlayStation,
             String namaPlayStation,
             int hargaSewaPlayStation,

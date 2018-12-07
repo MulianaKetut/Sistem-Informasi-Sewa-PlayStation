@@ -67,6 +67,13 @@ public class PlayStationResource {
     public String cariStatus(@QueryParam("status") String status) {
         return new Gson().toJson(new PlaystationHelper().searchStatus(status));
     }
+    
+    @GET
+    @Path("searchIdPs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String cariIdPs(@QueryParam("idPlayStation") String idPlayStation) {
+        return new Gson().toJson(new PlaystationHelper().searchIdPs(idPlayStation));
+    }
 
     /**
      * PUT method for updating or creating an instance of PlayStationResource
