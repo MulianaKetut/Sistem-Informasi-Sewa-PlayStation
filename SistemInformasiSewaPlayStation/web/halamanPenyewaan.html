@@ -57,18 +57,21 @@
                                 <tr><td>Nomer Hp</td> <td>:</td> <td><input type="text" id="nomorHp" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Id Playstation</td> <td>:</td><td><select type="" id="idPlayStation" value="" onchange="myFunction1()" style="border-radius: 10px; background-color: #eee"></select></td></tr>
+                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" onclick="myFunction1()" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Id Playstation</td> <td>:</td><td><select id="idPlayStation" onclick="loadDoc()" style="border-radius: 10px; background-color: #eee"></select></td></tr>
+                                <tr><td>Nama Playstation</td> <td>:</td> <td><input disabled="" type="text" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Harga Sewa</td> <td>:</td> <td><input disabled="" type="text" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Status</td> <td>:</td> <td><input disabled="" type="text" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>                               
                             </table>
 
                             <input type="submit" value="Tambah">
                             <pre id="berhasil">
                             </pre>
-
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </form>
+            <div id=""></div>
         </section>
         <script>
             function make_json(form) {
@@ -78,8 +81,8 @@
                     "alamat": form.alamat.value,
                     "nomorHp": form.nomorHp.value,
                     "tglSewa": form.tglSewa.value,
-                    "tglKembali": form.tglKembali.value
-
+                    "tglKembali": form.tglKembali.value,
+                    "idPlayStation": form.idPlayStation.value
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/addPenyewaan";
@@ -87,9 +90,25 @@
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
+                
+
+                var json1 = {
+                    "idPlayStation": form.idPlayStation.value,
+                    "namaPlayStation": form.namaPlayStation.value,
+                    "hargaSewaPlayStation": form.hargaSewaPlayStation.value,
+                    "status": "Dipinjam"
+                };
+                
+                var html = JSON.stringify(json1, 0, 100);
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus"
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html)
+                
                 document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
                 return false;
-
+                
             }
 
             function myFunction1() {
@@ -102,7 +121,7 @@
                 dropdown.add(defaultOption);
                 dropdown.selectedIndex = 0;
 
-                const url = 'http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation';
+                const url = 'http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/searchStatus?status=Ready';
 
                 const request = new XMLHttpRequest();
                 request.open('GET', url, true);
@@ -113,8 +132,8 @@
                         let option;
                         for (let i = 0; i < data.length; i++) {
                             option = document.createElement('option');
-                            option.text = data[i].name;
-                            option.value = data[i].abbreviation;
+                            option.text = data[i].idPlayStation;
+                            option.value = data[i].idPlayStation;
                             dropdown.add(option);
                         }
                     } else {
@@ -128,24 +147,25 @@
 
                 request.send();
                 
+            }
+            
+            function loadDoc() {
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/searchIdPs?idPlayStation=" +idPlayStation.value;
+
                 var xmlhttp = new XMLHttpRequest();
-
-                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation";
-
                 xmlhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        var html = JSON.parse(this.responseText);
-                        for (var i = 0; i < html.length; i++) {
-                            var select = document.getElementById("idPlayStation");
-                            var option = document.createElement("option");
-                            option.text = html[i].idPlayStation;
-                            select.add(option);
-                        }
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("namaPlayStation").value = myObj[0].namaPlayStation;
+                        document.getElementById("hargaSewaPlayStation").value = myObj[0].hargaSewaPlayStation;
+                        document.getElementById("status").value = myObj[0].status;
                     }
-                };
+                }
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
+
             }
+            
 
         </script>
 

@@ -60,7 +60,10 @@
                             <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="text" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="text" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                            <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" onchange="loadDoc1()" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Nama Playstation</td> <td>:</td> <td><input disabled="" type="text" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Harga Sewa</td> <td>:</td> <td><input disabled="" type="text" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Status</td> <td>:</td> <td><input disabled="" type="text" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>                               
                         </table>
 
                         <input type="submit" value="Bayar">
@@ -94,27 +97,45 @@
                 xmlhttp.send();
 
             }
+            
+            function loadDoc1() {
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/searchIdPs?idPlayStation=" +idPlayStation.value;
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("namaPlayStation").value = myObj[0].namaPlayStation;
+                        document.getElementById("hargaSewaPlayStation").value = myObj[0].hargaSewaPlayStation;
+                        document.getElementById("status").value = myObj[0].status;
+                    }
+                }
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+
+            }
 
             function make_json(form) {
-                var json = {
-                    "nama": form.nama.value,
-                    "nik": form.nik.value,
-                    "alamat": form.alamat.value,
-                    "nomorHp": form.nomorHp.value,
-                    "tglSewa": form.tglSewa.value,
-                    "tglKembali": form.tglKembali.value,
+                var json1 = {
                     "idPlayStation": form.idPlayStation.value,
+                    "namaPlayStation": form.namaPlayStation.value,
+                    "hargaSewaPlayStation": form.hargaSewaPlayStation.value,
+                    "status": "Ready"
                 };
-                var html = JSON.stringify(json, 0, 100);
-
-                var Url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan";
+                
+                var html = JSON.stringify(json1, 0, 100);
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus"
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false);
+                xhr.open('POST', url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
-                document.getElementById("berhasil").innerHTML = "Pembayaran Berhasil";
+                xhr.send(html)
+                
+                document.getElementById("berhasil").innerHTML = "Berhasil DiBayar";
                 return false;
             }
+            
+            function 
+            
         </script>
 
         <section id="teams" class="section teams">
