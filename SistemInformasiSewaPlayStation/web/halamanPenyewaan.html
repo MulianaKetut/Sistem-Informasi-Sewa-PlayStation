@@ -101,11 +101,11 @@
                 };
 
                 var html = JSON.stringify(json1, 0, 100);
-                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus"
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html)
+                xhr.send(html);
 
                 document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
                 return false;
@@ -140,7 +140,7 @@
                     } else {
                         // Reached the server, but it returned an error
                     }
-                }
+                };
 
                 request.onerror = function () {
                     console.error('An error occurred fetching the JSON from ' + url);
@@ -155,13 +155,15 @@
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var myObj = JSON.parse(this.responseText);
                         document.getElementById("namaPlayStation").value = myObj[0].namaPlayStation;
                         document.getElementById("hargaSewaPlayStation").value = myObj[0].hargaSewaPlayStation;
                         document.getElementById("status").value = myObj[0].status;
+                    } else {
+                        alert("Mungkin Terjadi Error");
                     }
-                }
+                };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
 

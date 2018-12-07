@@ -56,11 +56,15 @@
                                 <tr><td>Id Playstation</td> <td>:</td><td><input type="" id="idPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Nama Playstation</td> <td>:</td><td><input type="" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Harga Playstation</td> <td>:</td><td><input type="" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Status</td> <td>:</td><td><input type="" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Status</td> <td>:</td><td><Select id="status" value="" style="border-radius: 10px; background-color: #eee">
+                                            <option value="Ready">Ready</option>
+                                            <option value="Dipinjam">Dipinjam</option>
+                                        </select></td></tr>
 
                             </table>
 
                             <input type="submit" value="Tambah">
+                            
                             <pre id="berhasil">
                             </pre>
 
@@ -84,7 +88,8 @@
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
-                document.getElementById("berhasil").innerHTML = "Berhasil Tambah Sewa";
+                
+                document.getElementById("berhasil").innerHTML = "Berhasil Tambah Playstation";
                 return false;
 
             }

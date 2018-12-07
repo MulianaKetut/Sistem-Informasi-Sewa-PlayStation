@@ -61,7 +61,9 @@
                             <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="text" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="text" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                            <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation" onchange="loadDoc1()" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation"  value="" style="border-radius: 10px; background-color: #eee">
+                                    <button id="tombolPs" type="button" onclick="loadDoc1()">load</button></td>
+                            </tr>
                             <tr><td>Nama Playstation</td> <td>:</td> <td><input disabled="" type="text" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Harga Sewa</td> <td>:</td> <td><input disabled="" type="text" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Status</td> <td>:</td> <td><input disabled="" type="text" id="status" value="" style="border-radius: 10px; background-color: #eee"></td></tr>                               
@@ -78,12 +80,13 @@
         </section>
 
         <script>
+
             function loadDoc() {
                 var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/searchNik?nik=" + nikInput.value;
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var myObj = JSON.parse(this.responseText);
                         document.getElementById("nik").value = myObj[0].nik;
                         document.getElementById("nama").value = myObj[0].nama;
@@ -92,8 +95,8 @@
                         document.getElementById("tglSewa").value = myObj[0].tglSewa;
                         document.getElementById("tglKembali").value = myObj[0].tglKembali;
                         document.getElementById("idPlayStation").value = myObj[0].idPlayStation;
-                    }
-                }
+                    } 
+                };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
 
@@ -104,13 +107,13 @@
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var myObj = JSON.parse(this.responseText);
                         document.getElementById("namaPlayStation").value = myObj[0].namaPlayStation;
                         document.getElementById("hargaSewaPlayStation").value = myObj[0].hargaSewaPlayStation;
                         document.getElementById("status").value = myObj[0].status;
                     }
-                }
+                };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
 
@@ -125,17 +128,15 @@
                 };
 
                 var html = JSON.stringify(json1, 0, 100);
-                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus"
+                var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/playStation/updateStatus";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html)
+                xhr.send(html);
 
                 document.getElementById("berhasil").innerHTML = "Berhasil DiBayar";
                 return false;
             }
-
-            function
 
         </script>
 
