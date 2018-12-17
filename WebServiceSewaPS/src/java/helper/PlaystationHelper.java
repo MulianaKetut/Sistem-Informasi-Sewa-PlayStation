@@ -10,7 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Playstation;
-import util.PsHibernateUtil;
+import util.NewHibernateUtil;
 
 /**
  *
@@ -22,7 +22,7 @@ public class PlaystationHelper {
     }
     public List<Playstation> getAllPlaystation(){
         List<Playstation> result = null;
-        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Playstation p";
         Query q = session.createQuery(query);
         result = q.list();
@@ -31,7 +31,7 @@ public class PlaystationHelper {
     }
     
     public List<Playstation> searchStatus(String status){
-        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         String query = "from Playstation where status=:status";
         Query q = session.createQuery(query);
@@ -47,7 +47,7 @@ public class PlaystationHelper {
     }
     
     public List<Playstation> searchIdPs(String idPs){
-        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         String query = "from Playstation where idPlayStation=:idPlayStation";
         Query q = session.createQuery(query);
@@ -63,12 +63,10 @@ public class PlaystationHelper {
     }
     
     public void updateStatus(String idPlayStation,
-            String namaPlayStation,
-            int hargaSewaPlayStation,
             String status){
-        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        List<Playstation> list = searchStatus(status);
+        List<Playstation> list = searchIdPs(idPlayStation);
         Playstation ps = new Playstation();
         ps.setIdPlayStation(list.get(0).getIdPlayStation());
         ps.setNamaPlayStation(list.get(0).getNamaPlayStation());
@@ -81,7 +79,7 @@ public class PlaystationHelper {
     }
     
      public void addNewPlaystation(String idPlayStation, String namaPlayStation, int hargaSewaPlayStation, String status){
-        Session session = PsHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();                                
         Playstation ps = new Playstation(idPlayStation, namaPlayStation, hargaSewaPlayStation, status);
         session.save(ps);

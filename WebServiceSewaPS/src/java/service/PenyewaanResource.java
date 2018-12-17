@@ -7,6 +7,10 @@ package service;
 
 import com.google.gson.Gson;
 import helper.PenyewaanHelper;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -61,6 +65,24 @@ public class PenyewaanResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String cariNik(@QueryParam("nik") int nik){
         return new Gson().toJson(new PenyewaanHelper().searchNikPenyewa(nik));
+    }
+    
+    @GET
+    @Path("searchTahun")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String cariTahun(@QueryParam("tahun") String tglSewa) throws Exception{
+//        String strDate = tglSewa;
+//        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+        return new Gson().toJson(new PenyewaanHelper().searchTahun(Integer.parseInt(tglSewa)));
+    }
+    
+    @GET
+    @Path("searchBulan")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String cariBulan(@QueryParam("bulan") String tglSewa) throws Exception{
+//        String strDate = tglSewa;
+//        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+        return new Gson().toJson(new PenyewaanHelper().searchBulan(Integer.parseInt(tglSewa)));
     }
     
     /**

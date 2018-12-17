@@ -23,7 +23,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Playstation;
-import util.PsHibernateUtil;
+import util.NewHibernateUtil;
 
 /**
  * REST Web Service
@@ -105,8 +105,6 @@ public class PlayStationResource {
         Playstation ps = gson.fromJson(data, Playstation.class);
         PlaystationHelper psHelper = new PlaystationHelper();
         psHelper.updateStatus(ps.getIdPlayStation(), 
-                ps.getNamaPlayStation(), 
-                ps.getHargaSewaPlayStation(), 
                 ps.getStatus());
         return Response
                 .status(200)
