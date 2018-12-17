@@ -53,9 +53,9 @@
                     <div class="form-group">
                         <h2> Laporan Tahunan dan Bulanan</h2>
                         <table>
-                            <tr><td>Cari Tahun</td> <td>:</td><td><input id="tahun" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Cari Tahun</td> <td> : </td><td><input id="tahun" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td></td> <td></td><td><button type="button" onclick="cariTahun()">Cari Tahun</button></td></tr>
-                            <tr><td>Cari Bulan</td> <td>:</td><td><input id="bulan" style="border-radius: 10px; background-color: #eee"></td></tr>
+                            <tr><td>Cari Bulan</td> <td> : </td><td><input id="bulan" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td></td> <td></td><td><button type="button" onclick="cariBulan()">Cari Bulan</button></td></tr>
 
                         </table>
@@ -64,6 +64,10 @@
                 </div>
             </div>
         </section>
+
+        <script type="text/javascript">
+            ("#date").datepicker({dateFormat: 'yy'});
+        </script>
 
         <script>
             function cariBulan() {
