@@ -58,7 +58,7 @@
                                 <tr><td>Nomer Hp</td> <td>:</td> <td><input type="text" id="nomorHp" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="date" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" onclick="myFunction1()" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
+                                <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="date" id="tglKembali" onload="myFunction1()" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Id Playstation</td> <td>:</td><td><select id="idPlayStation" onclick="loadDoc()" style="border-radius: 10px; background-color: #eee"></select></td></tr>
                                 <tr><td>Nama Playstation</td> <td>:</td> <td><input disabled="" type="text" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                                 <tr><td>Harga Sewa</td> <td>:</td> <td><input disabled="" type="text" id="hargaSewaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
@@ -160,9 +160,7 @@
                         document.getElementById("namaPlayStation").value = myObj[0].namaPlayStation;
                         document.getElementById("hargaSewaPlayStation").value = myObj[0].hargaSewaPlayStation;
                         document.getElementById("status").value = myObj[0].status;
-                    } else {
-                        alert("Mungkin Terjadi Error");
-                    }
+                    } 
                 };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();

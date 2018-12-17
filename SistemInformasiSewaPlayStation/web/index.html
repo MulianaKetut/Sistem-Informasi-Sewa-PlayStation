@@ -61,7 +61,7 @@
                             <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Sewa</td> <td>:</td> <td><input type="text" id="tglSewa" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
                             <tr><td>Tanggal Kembali</td> <td>:</td><td><input type="text" id="tglKembali" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
-                            <tr><td>Id Playstation</td> <td>:</td><td><input type="text" id="idPlayStation"  value="" style="border-radius: 10px; background-color: #eee">
+                            <tr><td>Id Playstation</td> <td>:</td><td><input onchange="loadDoc1()" type="text" id="idPlayStation" value="idP PS" style="border-radius: 10px; background-color: #eee">
                                     <button id="tombolPs" type="button" onclick="loadDoc1()">load</button></td>
                             </tr>
                             <tr><td>Nama Playstation</td> <td>:</td> <td><input disabled="" type="text" id="namaPlayStation" value="" style="border-radius: 10px; background-color: #eee"></td></tr>
@@ -80,7 +80,7 @@
         </section>
 
         <script>
-
+            
             function loadDoc() {
                 var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/searchNik?nik=" + nikInput.value;
 
@@ -95,7 +95,7 @@
                         document.getElementById("tglSewa").value = myObj[0].tglSewa;
                         document.getElementById("tglKembali").value = myObj[0].tglKembali;
                         document.getElementById("idPlayStation").value = myObj[0].idPlayStation;
-                    } 
+                    }
                 };
                 xmlhttp.open("GET", url, true);
                 xmlhttp.send();
