@@ -70,7 +70,6 @@
                 var xmlhttp = new XMLHttpRequest();
                 var a = document.getElementById("bulan").value;
                 var url = "http://202.94.83.190:8080/WebServiceSewaPS/webresources/penyewaan/searchBulan?bulan=" + a;
-                alert(a);
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         myFunction(this.responseText);
